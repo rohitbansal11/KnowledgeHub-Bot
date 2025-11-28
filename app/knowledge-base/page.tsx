@@ -25,10 +25,6 @@ export default function KnowledgeBasePage() {
   const [saving, setSaving] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
   const fetchItems = async () => {
     try {
       const response = await fetch('/api/knowledge-base');
@@ -44,6 +40,11 @@ export default function KnowledgeBasePage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDelete = async (vectorId: string) => {
     if (!confirm('Are you sure you want to delete this item?')) {

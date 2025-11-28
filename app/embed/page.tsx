@@ -88,9 +88,9 @@ export default function EmbedPage() {
           <h2 className="text-xl font-semibold text-white mb-4">Instructions</h2>
           <ol className="list-decimal list-inside space-y-2 text-gray-300">
             <li>Copy the embed code above</li>
-            <li>Paste it into your website's HTML where you want the chat widget to appear</li>
+            <li>Paste it into your website&apos;s HTML where you want the chat widget to appear</li>
             <li>Adjust the width and height attributes to fit your design</li>
-            <li>Users will need to be logged in to use the chat (they'll be redirected to login if not authenticated)</li>
+            <li>Users will need to be logged in to use the chat (they&apos;ll be redirected to login if not authenticated)</li>
           </ol>
           
           <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg backdrop-blur-xl">

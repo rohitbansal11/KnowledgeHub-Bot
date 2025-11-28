@@ -28,25 +28,35 @@ export async function createVector(
 
   // Create vector in Pinecone
   const vectorId = `vec_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  
+  // Build metadata object, only including defined optional fields
+  const metadata: Record<string, string> = {
+    userId,
+    title,
+    content,
+    source,
+  };
+  
+  if (sourceUrl) {
+    metadata.sourceUrl = sourceUrl;
+  }
+  
+  if (fileName) {
+    metadata.fileName = fileName;
+  }
+  
   await pineconeIndex.upsert([
     {
       id: vectorId,
       values: embedding,
-      metadata: {
-        userId,
-        title,
-        content,
-        source,
-        sourceUrl,
-        fileName,
-      },
+      metadata,
     },
   ]);
 
   // Save metadata in MongoDB
   const client = await clientPromise;
   const db = client.db();
-  const knowledgeBaseItem: KnowledgeBaseItem = {
+  const knowledgeBaseItem = {
     userId,
     title,
     content,
@@ -63,7 +73,7 @@ export async function createVector(
   return {
     ...knowledgeBaseItem,
     _id: result.insertedId.toString(),
-  };
+  } as KnowledgeBaseItem;
 }
 
 export async function updateVector(
@@ -103,7 +113,13 @@ export async function updateVector(
   );
 
   const updated = await db.collection('knowledge_base').findOne({ vectorId, userId });
-  return updated as KnowledgeBaseItem;
+  if (!updated) {
+    throw new Error('Vector not found after update');
+  }
+  return {
+    ...updated,
+    _id: updated._id.toString(),
+  } as KnowledgeBaseItem;
 }
 
 export async function deleteVector(vectorId: string, userId: string): Promise<void> {

@@ -49,12 +49,12 @@ export async function getCurrentUser(request: NextRequest): Promise<User | null>
   const client = await clientPromise;
   const db = client.db();
   
-  let user;
-  try {
-    user = await db.collection('users').findOne({ _id: new ObjectId(decoded.userId) });
-  } catch {
-    user = await db.collection('users').findOne({ _id: decoded.userId });
+  // Check if userId is a valid ObjectId
+  if (!ObjectId.isValid(decoded.userId)) {
+    return null;
   }
+
+  const user = await db.collection('users').findOne({ _id: new ObjectId(decoded.userId) });
 
   if (!user) {
     return null;
