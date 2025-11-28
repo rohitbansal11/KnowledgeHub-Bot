@@ -71,31 +71,31 @@ export default function ChatPage() {
   return (
     <div className="min-h-screen bg-black flex flex-col">
       <Navbar />
-      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 py-8 h-screen overflow-hidden">
-        <h1 className="text-3xl font-bold text-white mb-6">Chat with AI</h1>
+      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-3 sm:px-4 py-4 sm:py-8 h-screen overflow-hidden">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6 px-1">Chat with AI</h1>
 
-        <div className="flex-1 bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl p-6 mb-4 overflow-y-auto max-h-[calc(100vh-250px)] min-h-0 border border-white/10">
-          <div className="space-y-4">
+        <div className="flex-1 bg-gradient-to-br from-gray-900 to-black rounded-xl sm:rounded-2xl shadow-2xl p-3 sm:p-6 mb-3 sm:mb-4 overflow-y-auto max-h-[calc(100vh-180px)] sm:max-h-[calc(100vh-250px)] min-h-0 border border-white/10">
+          <div className="space-y-3 sm:space-y-4">
             {messages.map((msg, idx) => (
               <div
                 key={idx}
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[80%] rounded-xl px-4 py-3 ${
+                  className={`max-w-[85%] sm:max-w-[80%] rounded-xl px-3 py-2 sm:px-4 sm:py-3 ${
                     msg.role === 'user'
                       ? 'bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg shadow-indigo-500/20'
                       : 'bg-gray-800/50 text-gray-200 border border-white/10'
                   }`}
                 >
-                  <p className="whitespace-pre-wrap">{msg.content}</p>
+                  <p className="whitespace-pre-wrap text-sm sm:text-base break-words">{msg.content}</p>
                 </div>
               </div>
             ))}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-gray-800/50 text-gray-300 rounded-xl px-4 py-3 border border-white/10">
-                  <span className="flex items-center gap-2">
+                <div className="bg-gray-800/50 text-gray-300 rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/10">
+                  <span className="flex items-center gap-2 text-sm sm:text-base">
                     <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -109,19 +109,19 @@ export default function ChatPage() {
           </div>
         </div>
 
-        <form onSubmit={handleSend} className="flex space-x-4">
+        <form onSubmit={handleSend} className="flex space-x-2 sm:space-x-4 pb-2 sm:pb-0">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask a question about your knowledge base..."
-            className="flex-1 px-4 py-3 bg-gray-900/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+            placeholder="Ask a question..."
+            className="flex-1 px-3 py-2.5 sm:px-4 sm:py-3 bg-gray-900/50 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-sm sm:text-base"
             disabled={loading}
           />
           <button
             type="submit"
             disabled={loading || !input.trim()}
-            className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-indigo-500/20"
+            className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-indigo-500/20 text-sm sm:text-base whitespace-nowrap"
           >
             Send
           </button>

@@ -45,16 +45,16 @@ export default function EmbedPage() {
   return (
     <div className="min-h-screen bg-black">
       <Navbar />
-      <div className="py-8">
-      <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-3xl font-bold text-white mb-2">Embed Chat Widget</h1>
-        <p className="text-gray-400 mb-8">
+      <div className="py-4 sm:py-8">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Embed Chat Widget</h1>
+        <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8">
           Embed the AI chat widget into your website using the code below.
         </p>
 
-        <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl p-6 mb-8 border border-white/10">
-          <h2 className="text-xl font-semibold text-white mb-4">Preview</h2>
-          <div className="border border-white/10 rounded-lg overflow-hidden" style={{ height: '600px' }}>
+        <div className="bg-gradient-to-br from-gray-900 to-black rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 mb-6 sm:mb-8 border border-white/10">
+          <h2 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">Preview</h2>
+          <div className="border border-white/10 rounded-lg overflow-hidden h-[400px] sm:h-[600px]">
             <iframe
               src={iframeUrl}
               width="100%"
@@ -66,12 +66,12 @@ export default function EmbedPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl p-6 mb-8 border border-white/10">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold text-white">Embed Code</h2>
+        <div className="bg-gradient-to-br from-gray-900 to-black rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 mb-6 sm:mb-8 border border-white/10">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-3 sm:gap-0">
+            <h2 className="text-lg sm:text-xl font-semibold text-white">Embed Code</h2>
             <button
               onClick={copyToClipboard}
-              className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white px-4 py-2 rounded-lg hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all shadow-lg hover:shadow-indigo-500/20"
+              className="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white px-4 py-2 rounded-lg hover:from-indigo-600 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all shadow-lg hover:shadow-indigo-500/20 text-sm sm:text-base whitespace-nowrap w-full sm:w-auto"
             >
               Copy Code
             </button>
@@ -79,22 +79,22 @@ export default function EmbedPage() {
           <textarea
             readOnly
             value={embedCode}
-            className="w-full h-64 p-4 border border-white/10 rounded-lg font-mono text-sm bg-gray-900/50 text-gray-300"
+            className="w-full h-48 sm:h-64 p-3 sm:p-4 border border-white/10 rounded-lg font-mono text-xs sm:text-sm bg-gray-900/50 text-gray-300"
             onClick={(e) => (e.target as HTMLTextAreaElement).select()}
           />
         </div>
 
-        <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl shadow-2xl p-6 border border-white/10">
-          <h2 className="text-xl font-semibold text-white mb-4">Instructions</h2>
-          <ol className="list-decimal list-inside space-y-2 text-gray-300">
+        <div className="bg-gradient-to-br from-gray-900 to-black rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 border border-white/10">
+          <h2 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">Instructions</h2>
+          <ol className="list-decimal list-inside space-y-2 text-sm sm:text-base text-gray-300">
             <li>Copy the embed code above</li>
             <li>Paste it into your website&apos;s HTML where you want the chat widget to appear</li>
             <li>Adjust the width and height attributes to fit your design</li>
             <li>Users will need to be logged in to use the chat (they&apos;ll be redirected to login if not authenticated)</li>
           </ol>
           
-          <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg backdrop-blur-xl">
-            <p className="text-sm text-yellow-400">
+          <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg backdrop-blur-xl">
+            <p className="text-xs sm:text-sm text-yellow-400">
               <strong>Note:</strong> The chat widget requires users to be authenticated. Make sure users are logged in to your KnowledgeHub Bot application before using the embedded chat.
             </p>
           </div>
